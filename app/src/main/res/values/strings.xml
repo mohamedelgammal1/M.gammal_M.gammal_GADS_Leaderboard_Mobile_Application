@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">GADS Leaderboard Mobile Application</string>
+    <string name="tab_text_1">Learning Leaders</string>
+    <string name="tab_text_2">Skill IQ Leaders</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="leaderboard">LEADERBOARD</string>
+    <string name="submit">Submit</string>
+    <string name="project_submission">Project Submission</string>
+    <string name="first_name">First NAME</string>
+    <string name="last_name">Last NAME</string>
+    <string name="email_address">Email Address</string>
+    <string name="project_on_github_link">Project on GITHUB (link)</string>
+</resources>
