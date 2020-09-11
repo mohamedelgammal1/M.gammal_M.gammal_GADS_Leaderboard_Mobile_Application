@@ -13,12 +13,10 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Field;
 
 
 public class RetroFitClient {
     private final NetworkInterface networkInterface;
-    private static RetroFitClient INSTANCE;
 
     private RetroFitClient(boolean submit) {
         Retrofit retrofit;
@@ -38,16 +36,12 @@ public class RetroFitClient {
     }
 
     public static RetroFitClient getINSTANCE(boolean submit) {
-        if (INSTANCE == null) {
-            INSTANCE = new RetroFitClient(submit);
-        }
-        return INSTANCE;
+        return new RetroFitClient(submit);
     }
 
     private static OkHttpClient.Builder getHTTPClient() {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
-//        logging.setLevel(HttpLoggingInterceptor.Level.NONE);
+        logging.setLevel(HttpLoggingInterceptor.Level.NONE);
         return new OkHttpClient.Builder().addInterceptor(logging);
     }
 
