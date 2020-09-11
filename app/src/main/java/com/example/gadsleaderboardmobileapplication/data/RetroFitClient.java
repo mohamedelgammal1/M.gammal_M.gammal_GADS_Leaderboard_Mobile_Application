@@ -5,7 +5,6 @@ import com.example.gadsleaderboardmobileapplication.datamodels.HoursModel;
 import com.example.gadsleaderboardmobileapplication.datamodels.ScoreModel;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
@@ -22,7 +21,7 @@ public class RetroFitClient {
         Retrofit retrofit;
         String baseURL;
         if (submit) {
-            baseURL = " https://docs.google.com/forms/d/e/";
+            baseURL = "https://docs.google.com/forms/d/e/";
         } else {
             baseURL = "https://gadsapi.herokuapp.com";
         }
@@ -41,7 +40,8 @@ public class RetroFitClient {
 
     private static OkHttpClient.Builder getHTTPClient() {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-        logging.setLevel(HttpLoggingInterceptor.Level.NONE);
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+//        logging.setLevel(HttpLoggingInterceptor.Level.NONE);
         return new OkHttpClient.Builder().addInterceptor(logging);
     }
 
@@ -53,7 +53,7 @@ public class RetroFitClient {
         return networkInterface.getTopHoursResponse();
     }
 
-    public Call<ResponseBody> sendUserData(HashMap<String, String> hashMap) {
-        return networkInterface.sendUserData(hashMap);
+    public Call<ResponseBody> sendUserData(String firstName, String lastName, String email, String projectLink) {
+        return networkInterface.sendUserData(firstName, lastName, email, projectLink);
     }
 }

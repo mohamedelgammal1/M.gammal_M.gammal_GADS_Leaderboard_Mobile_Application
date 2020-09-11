@@ -13,7 +13,6 @@ import com.example.gadsleaderboardmobileapplication.R;
 import com.example.gadsleaderboardmobileapplication.databinding.ActivitySubmitBinding;
 import com.example.gadsleaderboardmobileapplication.utils.ConnectivityManager;
 
-import java.util.HashMap;
 import java.util.Objects;
 
 import static com.example.gadsleaderboardmobileapplication.utils.Validation.isEmailValid;
@@ -71,14 +70,10 @@ public class SubmitActivity extends AppCompatActivity {
     private void vCallSubmitAPI() {
         if (ConnectivityManager.CheckInternet(this)) {
             activitySubmitBinding.progressBar.setVisibility(View.VISIBLE);
-            HashMap<String, String> hashMap = new HashMap<>();
-            hashMap.put("entry.1877115667", Objects.requireNonNull(activitySubmitBinding.editTxtFName.getText()).toString());
-            hashMap.put("entry.2006916086", Objects.requireNonNull(activitySubmitBinding.editTxtLName.getText()).toString());
-            hashMap.put("entry.1824927963", Objects.requireNonNull(activitySubmitBinding.editTxtEmail.getText()).toString());
-            hashMap.put("entry.284483984", Objects.requireNonNull(activitySubmitBinding.editTxtProjectLink.getText()).toString());
-
-
-            submitViewModel.sendUserData(hashMap);
+            submitViewModel.sendUserData(Objects.requireNonNull(activitySubmitBinding.editTxtFName.getText()).toString(),
+                    Objects.requireNonNull(activitySubmitBinding.editTxtLName.getText()).toString(),
+                    Objects.requireNonNull(activitySubmitBinding.editTxtEmail.getText()).toString(),
+                    Objects.requireNonNull(activitySubmitBinding.editTxtProjectLink.getText()).toString());
         }
     }
 

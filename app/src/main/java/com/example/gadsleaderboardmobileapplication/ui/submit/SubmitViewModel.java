@@ -16,8 +16,8 @@ import retrofit2.Response;
 public class SubmitViewModel extends ViewModel {
     public MutableLiveData<Integer> mSubmitMutableLiveData = new MutableLiveData<>();
 
-    public void sendUserData(HashMap<String, String> hashMap) {
-        RetroFitClient.getINSTANCE(true).sendUserData(hashMap).
+    public void sendUserData(String firstName, String lastName, String email, String projectLink) {
+        RetroFitClient.getINSTANCE(true).sendUserData(firstName, lastName, email, projectLink).
                 enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
