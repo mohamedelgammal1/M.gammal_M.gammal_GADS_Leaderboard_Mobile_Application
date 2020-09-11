@@ -2,6 +2,7 @@ package com.example.gadsleaderboardmobileapplication.utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.net.Network;
 import android.net.NetworkCapabilities;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.view.WindowManager;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatImageView;
 
 import com.example.gadsleaderboardmobileapplication.R;
 
@@ -65,7 +67,7 @@ public class ConnectivityManager {
         alertDialog.setCancelable(true);
         alertDialog.show();
         AppCompatButton yesButton = dialogView.findViewById(R.id.yes);
-        AppCompatButton noButton = dialogView.findViewById(R.id.ic_close);
+        AppCompatImageView noButton = dialogView.findViewById(R.id.ic_close);
         yesButton.setOnClickListener(yesListener);
         noButton.setOnClickListener(v -> {
             alertDialog.dismiss();
