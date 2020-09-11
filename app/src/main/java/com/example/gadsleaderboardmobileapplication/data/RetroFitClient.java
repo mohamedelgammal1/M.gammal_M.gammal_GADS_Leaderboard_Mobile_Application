@@ -5,6 +5,7 @@ import com.example.gadsleaderboardmobileapplication.datamodels.HoursModel;
 import com.example.gadsleaderboardmobileapplication.datamodels.ScoreModel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
@@ -12,6 +13,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Field;
 
 
 public class RetroFitClient {
@@ -57,7 +59,7 @@ public class RetroFitClient {
         return networkInterface.getTopHoursResponse();
     }
 
-    public Call<ResponseBody> sendUserData(String firstName, String lastName, String email, String projectLink) {
-        return networkInterface.sendUserData(firstName, lastName, email, projectLink);
+    public Call<ResponseBody> sendUserData(HashMap<String, String> hashMap) {
+        return networkInterface.sendUserData(hashMap);
     }
 }

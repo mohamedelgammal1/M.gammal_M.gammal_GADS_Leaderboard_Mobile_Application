@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.gadsleaderboardmobileapplication.data.RetroFitClient;
 
+import java.util.HashMap;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -14,8 +16,8 @@ import retrofit2.Response;
 public class SubmitViewModel extends ViewModel {
     public MutableLiveData<Integer> mSubmitMutableLiveData = new MutableLiveData<>();
 
-    public void sendUserData(String firstName, String lastName, String email, String projectLink) {
-        RetroFitClient.getINSTANCE(true).sendUserData(firstName, lastName, email, projectLink).
+    public void sendUserData(HashMap<String, String> hashMap) {
+        RetroFitClient.getINSTANCE(true).sendUserData(hashMap).
                 enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
