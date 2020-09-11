@@ -135,5 +135,11 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/_50sdp"
             android:src="@drawable/ic_submit" />
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_centerInParent="true"
+            android:visibility="gone"/>
     </RelativeLayout>
 </layout>

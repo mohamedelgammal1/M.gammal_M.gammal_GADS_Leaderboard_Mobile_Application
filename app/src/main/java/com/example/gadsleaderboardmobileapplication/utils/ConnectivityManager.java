@@ -42,6 +42,8 @@ public class ConnectivityManager {
                 final AlertDialog alertDialog = dialogBuilder.create();
                 Objects.requireNonNull(alertDialog.getWindow()).setLayout(WindowManager.LayoutParams.MATCH_PARENT,
                         WindowManager.LayoutParams.MATCH_PARENT);
+                Objects.requireNonNull(alertDialog.getWindow()).setDimAmount((float) 0.5);
+                alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
                 alertDialog.show();
                 dialogView.findViewById(R.id.dismiss).setOnClickListener(v -> alertDialog.dismiss());
             }
@@ -58,6 +60,8 @@ public class ConnectivityManager {
         final AlertDialog alertDialog = dialogBuilder.create();
         Objects.requireNonNull(alertDialog.getWindow()).setLayout(WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.MATCH_PARENT);
+        Objects.requireNonNull(alertDialog.getWindow()).setDimAmount((float) 0.5);
+        alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         alertDialog.setCancelable(true);
         alertDialog.show();
         AppCompatButton yesButton = dialogView.findViewById(R.id.yes);
@@ -82,6 +86,8 @@ public class ConnectivityManager {
         final AlertDialog alertDialog = dialogBuilder.create();
         Objects.requireNonNull(alertDialog.getWindow()).setLayout(WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.MATCH_PARENT);
+        Objects.requireNonNull(alertDialog.getWindow()).setDimAmount((float) 0.5);
+        alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         alertDialog.setCancelable(true);
         alertDialog.show();
         new Timer().schedule(new TimerTask() {

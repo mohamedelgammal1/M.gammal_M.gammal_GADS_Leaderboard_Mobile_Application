@@ -10,8 +10,8 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.MainActivity"
-        android:layoutDirection="ltr">
+        android:layoutDirection="ltr"
+        tools:context=".ui.MainActivity">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
@@ -62,6 +62,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            app:layout_anchor="@+id/view_pager"
+            app:layout_anchorGravity="center"
+            android:visibility="gone"/>
+
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

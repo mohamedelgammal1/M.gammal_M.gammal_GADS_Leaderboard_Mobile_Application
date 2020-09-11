@@ -15,12 +15,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class PageViewModel extends ViewModel {
-    MutableLiveData<ArrayList<ScoreModel>> mScoreMutableLiveData = new MutableLiveData<>();
-    MutableLiveData<ArrayList<HoursModel>> mHoursMutableLiveData = new MutableLiveData<>();
-    MutableLiveData<String> mErrorLiveData = new MutableLiveData<>();
+    public MutableLiveData<ArrayList<ScoreModel>> mScoreMutableLiveData = new MutableLiveData<>();
+    public MutableLiveData<ArrayList<HoursModel>> mHoursMutableLiveData = new MutableLiveData<>();
 
     public void getTopScoresResponse() {
-        RetroFitClient.getINSTANCE().getTopScoresResponse().
+        RetroFitClient.getINSTANCE(false).getTopScoresResponse().
                 enqueue(new Callback<ArrayList<ScoreModel>>() {
                     @Override
                     public void onResponse(@NonNull Call<ArrayList<ScoreModel>> call, @NonNull Response<ArrayList<ScoreModel>> response) {
@@ -29,13 +28,12 @@ public class PageViewModel extends ViewModel {
 
                     @Override
                     public void onFailure(@NonNull Call<ArrayList<ScoreModel>> call, @NonNull Throwable t) {
-                        mErrorLiveData.setValue("error");
                     }
                 });
     }
 
     public void getTopHoursResponse() {
-        RetroFitClient.getINSTANCE().getTopHoursResponse().
+        RetroFitClient.getINSTANCE(false).getTopHoursResponse().
                 enqueue(new Callback<ArrayList<HoursModel>>() {
                     @Override
                     public void onResponse(@NonNull Call<ArrayList<HoursModel>> call, @NonNull Response<ArrayList<HoursModel>> response) {
@@ -44,7 +42,6 @@ public class PageViewModel extends ViewModel {
 
                     @Override
                     public void onFailure(@NonNull Call<ArrayList<HoursModel>> call, @NonNull Throwable t) {
-                        mErrorLiveData.setValue("error");
                     }
                 });
     }

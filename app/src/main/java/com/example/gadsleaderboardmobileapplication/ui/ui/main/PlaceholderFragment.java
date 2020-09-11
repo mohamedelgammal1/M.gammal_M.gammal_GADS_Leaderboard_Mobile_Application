@@ -7,14 +7,13 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gadsleaderboardmobileapplication.databinding.FragmentMainBinding;
 import com.example.gadsleaderboardmobileapplication.datamodels.HoursModel;
-import com.example.gadsleaderboardmobileapplication.datamodels.ScoreModel;
 
 import java.util.ArrayList;
 
@@ -23,31 +22,15 @@ import java.util.ArrayList;
  */
 public class PlaceholderFragment extends Fragment {
 
-    private static final String ARG_SECTION_NUMBER = "section_number";
-
-    private PageViewModel pageViewModel;
-    private ItemsAdapter itemsAdapter;
-    FragmentMainBinding fragmentMainBinding;
-
-    public static PlaceholderFragment newInstance(int index) {
-        PlaceholderFragment fragment = new PlaceholderFragment();
-        Bundle bundle = new Bundle();
-        bundle.putInt(ARG_SECTION_NUMBER, index);
-        fragment.setArguments(bundle);
-        return fragment;
-    }
+    private static ItemsAdapter itemsAdapter;
+    static FragmentMainBinding fragmentMainBinding;
+    static FragmentActivity activity;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        vInitModel();
     }
 
-    private void vInitModel() {
-        ViewModelProvider.Factory factory = ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().getApplication());
-        ViewModelProvider viewModelProvider = new ViewModelProvider(this, factory);
-        pageViewModel = viewModelProvider.get(PageViewModel.class);
-    }
 
     @Override
     public View onCreateView(
@@ -56,32 +39,21 @@ public class PlaceholderFragment extends Fragment {
         fragmentMainBinding = FragmentMainBinding.inflate(
                 inflater, container, false);
         View root = fragmentMainBinding.getRoot();
-        PopulateRecyclerView("HOURS");
-        vHandleObservers();
+        activity = getActivity();
         return root;
     }
 
-    private void vHandleObservers() {
-        pageViewModel.mHoursMutableLiveData.observe(getViewLifecycleOwner(), this::vHandleOnSuccessForGetHours);
-        pageViewModel.mScoreMutableLiveData.observe(getViewLifecycleOwner(), this::vHandleOnSuccessForGetScores);
-    }
-
-    private void vHandleOnSuccessForGetScores(ArrayList<ScoreModel> scoreModels) {
-        fragmentMainBinding.itemsRecyclerview.setAdapter(null);
-        PopulateRecyclerView("SCORES");
-        itemsAdapter.setScoresModelArrayList(scoreModels);
-    }
-
-    private void vHandleOnSuccessForGetHours(ArrayList<HoursModel> hoursModel) {
+    public static void vHandleOnSuccessForGetHours(ArrayList<HoursModel> hoursModel) {
         fragmentMainBinding.itemsRecyclerview.setAdapter(null);
         PopulateRecyclerView("HOURS");
         itemsAdapter.setHoursModelArrayList(hoursModel);
+        fragmentMainBinding.itemsRecyclerview.setAdapter(itemsAdapter);
     }
 
-    private void PopulateRecyclerView(String type) {
-        itemsAdapter = new ItemsAdapter(requireActivity(), type);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(requireActivity(),
-                RecyclerView.HORIZONTAL,
+    public static void PopulateRecyclerView(String type) {
+        itemsAdapter = new ItemsAdapter(activity, type);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(activity,
+                RecyclerView.VERTICAL,
                 false);
         fragmentMainBinding.itemsRecyclerview.setLayoutManager(layoutManager);
         fragmentMainBinding.itemsRecyclerview.setHasFixedSize(true);

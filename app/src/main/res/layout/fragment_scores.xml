@@ -14,17 +14,17 @@
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.ui.main.PlaceholderFragment"
-        android:layoutDirection="ltr">
+        android:layoutDirection="ltr"
+        tools:context=".ui.ui.main.ScoresFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/items_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/constraintLayout"
-            android:layout_marginTop="@dimen/_20sdp"/>
+            app:layout_constraintTop_toTopOf="@+id/constraintLayout" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

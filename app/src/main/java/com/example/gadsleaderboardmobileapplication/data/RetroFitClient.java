@@ -18,9 +18,16 @@ public class RetroFitClient {
     private final NetworkInterface networkInterface;
     private static RetroFitClient INSTANCE;
 
-    private RetroFitClient() {
+    private RetroFitClient(boolean submit) {
         Retrofit retrofit;
+        String baseURL;
+        if (submit) {
+            baseURL = " https://docs.google.com/forms/d/e/";
+        } else {
+            baseURL = "https://gadsapi.herokuapp.com";
+        }
         retrofit = new Retrofit.Builder()
+                .baseUrl(baseURL)
                 .client(getHTTPClient().build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -28,9 +35,9 @@ public class RetroFitClient {
         networkInterface = retrofit.create(NetworkInterface.class);
     }
 
-    public static RetroFitClient getINSTANCE() {
+    public static RetroFitClient getINSTANCE(boolean submit) {
         if (INSTANCE == null) {
-            INSTANCE = new RetroFitClient();
+            INSTANCE = new RetroFitClient(submit);
         }
         return INSTANCE;
     }

@@ -2,21 +2,27 @@ package com.example.gadsleaderboardmobileapplication.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.viewpager.widget.ViewPager;
 
 import com.example.gadsleaderboardmobileapplication.R;
 import com.example.gadsleaderboardmobileapplication.databinding.ActivityMainBinding;
+import com.example.gadsleaderboardmobileapplication.datamodels.HoursModel;
+import com.example.gadsleaderboardmobileapplication.datamodels.ScoreModel;
 import com.example.gadsleaderboardmobileapplication.ui.submit.SubmitActivity;
 import com.example.gadsleaderboardmobileapplication.ui.ui.main.PageViewModel;
 import com.example.gadsleaderboardmobileapplication.ui.ui.main.SectionsPagerAdapter;
 import com.example.gadsleaderboardmobileapplication.utils.ConnectivityManager;
 import com.google.android.material.tabs.TabLayout;
 
+import java.util.ArrayList;
 import java.util.Objects;
+
+import static com.example.gadsleaderboardmobileapplication.ui.ui.main.PlaceholderFragment.vHandleOnSuccessForGetHours;
+import static com.example.gadsleaderboardmobileapplication.ui.ui.main.ScoresFragment.vHandleOnSuccessForGetScores;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding activityMainBinding;
@@ -43,21 +49,35 @@ public class MainActivity extends AppCompatActivity {
         vInitPager();
         /* SectionsPagerAdapter selection*/
         vHandleData();
+        vHandleObservers();
+    }
+
+    private void vHandleObservers() {
+        pageViewModel.mHoursMutableLiveData.observe(this, this::vHandleOnSuccessForGetHoursMain);
+        pageViewModel.mScoreMutableLiveData.observe(this, this::vHandleOnSuccessForGetScoresMain);
+    }
+
+    private void vHandleOnSuccessForGetScoresMain(ArrayList<ScoreModel> scoreModels) {
+        activityMainBinding.progressBar.setVisibility(View.GONE);
+        vHandleOnSuccessForGetScores(scoreModels);
+    }
+
+    private void vHandleOnSuccessForGetHoursMain(ArrayList<HoursModel> hoursModels) {
+        activityMainBinding.progressBar.setVisibility(View.GONE);
+        vHandleOnSuccessForGetHours(hoursModels);
     }
 
     private void vHandleData() {
-        pageViewModel.getTopHoursResponse();
+        vGetHours();
         activityMainBinding.tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 switch (Objects.requireNonNull(Objects.requireNonNull(tab.getText()).toString())) {
                     case "Learning Leaders":
-                        if (ConnectivityManager.CheckInternet(MainActivity.this)) {
-                            pageViewModel.getTopHoursResponse();
-                        }
+                        vGetHours();
                         break;
                     case "Skill IQ Leaders":
-                        pageViewModel.getTopScoresResponse();
+                        vGetScores();
                         break;
                 }
 
@@ -73,31 +93,20 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        activityMainBinding.viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            }
+    }
 
-            @Override
-            public void onPageSelected(int position) {
-                switch (position) {
-                    case 0:
-                        if (ConnectivityManager.CheckInternet(MainActivity.this)) {
-                            pageViewModel.getTopHoursResponse();
-                        }
-                        break;
-                    case 1:
-                        pageViewModel.getTopScoresResponse();
-                        break;
-                }
+    private void vGetScores() {
+        if (ConnectivityManager.CheckInternet(MainActivity.this)) {
+            activityMainBinding.progressBar.setVisibility(View.VISIBLE);
+            pageViewModel.getTopScoresResponse();
+        }
+    }
 
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
+    private void vGetHours() {
+        if (ConnectivityManager.CheckInternet(MainActivity.this)) {
+            activityMainBinding.progressBar.setVisibility(View.VISIBLE);
+            pageViewModel.getTopHoursResponse();
+        }
     }
 
     private void vInitPager() {

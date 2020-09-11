@@ -3,6 +3,7 @@ package com.example.gadsleaderboardmobileapplication.ui.ui.main;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -61,6 +62,14 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.MyViewHolder
                 holder.txtview_score.setText(String.format("%s learning hours, %s.", hoursModelArrayList.get(position).getHours(), hoursModelArrayList.get(position).getCountry()));
                 break;
             case "SCORES":
+                RelativeLayout.LayoutParams ic_imageLayoutParams =
+                        (RelativeLayout.LayoutParams) holder.ic_image.getLayoutParams();
+                ic_imageLayoutParams.setMargins(
+                        (int) activity.getResources().getDimension(R.dimen._5sdp),
+                        (int) activity.getResources().getDimension(R.dimen._5sdp)
+                        , (int) activity.getResources().getDimension(R.dimen._10sdp),
+                        (int) activity.getResources().getDimension(R.dimen._5sdp));
+
                 Picasso.with(activity)
                         .load(ScoresModelArrayList.get(position).getBadgeUrl())
                         .into(holder.ic_image);
