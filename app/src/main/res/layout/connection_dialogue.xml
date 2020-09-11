@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:background="@drawable/dialogue_background"
+    android:layoutDirection="ltr"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/connection_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:text="@string/you_are_currently_not_connected_to_the_internet"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_12sdp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/dismiss"
+        android:layout_width="@dimen/_110sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_below="@+id/connection_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_15sdp"
+        android:background="@drawable/dialogue_btn_background"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless"
+        android:shadowRadius="0"
+        android:stateListAnimator="@null"
+        android:text="@string/dismiss"
+        android:textAllCaps="false"
+        android:textColor="@color/orange"
+        android:textSize="@dimen/_10sdp" />
+
+
+</RelativeLayout>

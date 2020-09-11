@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.gadsleaderboardmobileapplication">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="false"
         android:icon="@drawable/ic_splash"
@@ -14,7 +17,7 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:icon,allowBackup"
         tools:targetApi="m">
-        <activity android:name=".ui.SubmitActivity"></activity>
+        <activity android:name=".ui.SubmitActivity" />
         <activity
             android:name=".ui.MainActivity"
             android:label="@string/title_activity_main"
