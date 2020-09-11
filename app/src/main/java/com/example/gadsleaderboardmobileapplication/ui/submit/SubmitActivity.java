@@ -1,7 +1,6 @@
-package com.example.gadsleaderboardmobileapplication.ui;
+package com.example.gadsleaderboardmobileapplication.ui.submit;
 
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;

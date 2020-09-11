@@ -13,7 +13,7 @@
         android:layoutDirection="ltr"
         android:paddingStart="@dimen/_15sdp"
         android:paddingEnd="@dimen/_15sdp"
-        tools:context=".ui.SubmitActivity">
+        tools:context=".ui.submit.SubmitActivity">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ic_main_top"

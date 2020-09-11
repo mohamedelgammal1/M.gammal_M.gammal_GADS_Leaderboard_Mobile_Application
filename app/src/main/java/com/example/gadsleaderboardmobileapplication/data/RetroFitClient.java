@@ -1,9 +1,15 @@
 package com.example.gadsleaderboardmobileapplication.data;
 
 import com.example.gadsleaderboardmobileapplication.data.newtwork.NetworkInterface;
+import com.example.gadsleaderboardmobileapplication.datamodels.HoursModel;
+import com.example.gadsleaderboardmobileapplication.datamodels.ScoreModel;
+
+import java.util.ArrayList;
 
 import okhttp3.OkHttpClient;
+import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -15,7 +21,6 @@ public class RetroFitClient {
     private RetroFitClient() {
         Retrofit retrofit;
         retrofit = new Retrofit.Builder()
-                .baseUrl(WebServiceBaseUrl.BASE_URL) //BASE_URL
                 .client(getHTTPClient().build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -35,5 +40,17 @@ public class RetroFitClient {
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 //        logging.setLevel(HttpLoggingInterceptor.Level.NONE);
         return new OkHttpClient.Builder().addInterceptor(logging);
+    }
+
+    public Call<ArrayList<ScoreModel>> getTopScoresResponse() {
+        return networkInterface.getTopScoresResponse();
+    }
+
+    public Call<ArrayList<HoursModel>> getTopHoursResponse() {
+        return networkInterface.getTopHoursResponse();
+    }
+
+    public Call<ResponseBody> sendUserData(String firstName, String lastName, String email, String projectLink) {
+        return networkInterface.sendUserData(firstName, lastName, email, projectLink);
     }
 }

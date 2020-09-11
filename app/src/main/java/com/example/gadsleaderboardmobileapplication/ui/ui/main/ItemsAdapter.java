@@ -5,9 +5,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gadsleaderboardmobileapplication.R;
@@ -19,14 +19,14 @@ import java.util.ArrayList;
 
 public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.MyViewHolder> {
     private String itemType;
-    private AppCompatActivity activity;
+    private FragmentActivity activity;
 
     public void setScoresModelArrayList(ArrayList<ScoreModel> ScoresModelArrayList) {
         this.ScoresModelArrayList = ScoresModelArrayList;
         notifyDataSetChanged();
     }
 
-    public ItemsAdapter(AppCompatActivity _activity, String type) {
+    public ItemsAdapter(FragmentActivity _activity, String type) {
         this.itemType = type;
         this.activity = _activity;
     }
