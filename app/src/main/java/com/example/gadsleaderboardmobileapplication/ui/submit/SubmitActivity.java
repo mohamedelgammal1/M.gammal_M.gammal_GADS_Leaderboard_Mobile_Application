@@ -1,5 +1,7 @@
 package com.example.gadsleaderboardmobileapplication.ui.submit;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 
@@ -48,7 +50,7 @@ public class SubmitActivity extends AppCompatActivity {
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-                onBackPressed();
+                finish();
             }
         }, 3000);
     }
@@ -94,6 +96,7 @@ public class SubmitActivity extends AppCompatActivity {
 
     private void vCallSubmitAPI() {
         if (ConnectivityManager.CheckInternet(this)) {
+            activitySubmitBinding.progressBar.getIndeterminateDrawable().setColorFilter(0xFFFF0000, android.graphics.PorterDuff.Mode.MULTIPLY);
             activitySubmitBinding.progressBar.setVisibility(View.VISIBLE);
             submitViewModel.sendUserData(Objects.requireNonNull(activitySubmitBinding.editTxtFName.getText()).toString(),
                     Objects.requireNonNull(activitySubmitBinding.editTxtLName.getText()).toString(),
@@ -109,5 +112,6 @@ public class SubmitActivity extends AppCompatActivity {
         ViewModelProvider.Factory factory = ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication());
         ViewModelProvider viewModelProvider = new ViewModelProvider(this, factory);
         submitViewModel = viewModelProvider.get(SubmitViewModel.class);
+        activitySubmitBinding.progressBar.getIndeterminateDrawable().setColorFilter(0xFFFF0000, android.graphics.PorterDuff.Mode.MULTIPLY);
     }
 }
