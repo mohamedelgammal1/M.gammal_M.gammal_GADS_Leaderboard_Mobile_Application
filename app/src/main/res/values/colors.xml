@@ -9,4 +9,5 @@
     <color name="gray">#717171</color>
     <color name="orange">#fa9819</color>
     <color name="gold">#ffae45</color>
+    <color name="errorTextColor">#ED0C6E</color>
 </resources>
